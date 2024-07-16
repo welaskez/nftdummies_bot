@@ -6,4 +6,4 @@ router = Router()
 
 @router.message(Command("start"))
 async def newsletter_cmd(message: types.Message):
-    await message.anser("this is start command")
+    await message.answer("this is start command")
