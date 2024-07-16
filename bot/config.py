@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 import os
@@ -10,3 +12,4 @@ DB_URL = os.getenv("DB_URL")
 DB_ECHO = True
 MNEMONICS = os.getenv("MNEMONICS")
 TONAPI_KEY = os.getenv("TONAPI_KEY")
+BASE_DIR = Path(__file__).resolve().parent
