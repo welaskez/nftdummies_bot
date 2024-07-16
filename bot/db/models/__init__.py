@@ -1,7 +1,3 @@
-__all__ = (
-    "Base",
-    "User",
-)
+__all__ = ("Base",)
 
 from .base import Base
-from .user import User

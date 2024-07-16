@@ -1,50 +1,32 @@
-from typing import Any
-
-from pytonconnect import TonConnect
-
-from pytoniq_core import Address
-
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import (
     BufferedInputFile,
     CallbackQuery,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
 )
-from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from io import BytesIO
-
-import config
-
-import asyncio
-import qrcode
-
-from pytonconnect.storage import IStorage
-
+from pytonconnect import TonConnect
+from pytonconnect.storage import FileStorage
 from pytonconnect.parsers import WalletInfo
+
+from pytoniq_core import Address
 
 from nacl.utils import random
 
 from datetime import datetime
 
-storage = {}
+from io import BytesIO
+
+from typing import Any
+
+import asyncio
+import qrcode
+import config
 
 
-class TcStorage(IStorage):
-    def __init__(self, chat_id: int):
-        self.chat_id = chat_id
-
-    def _get_key(self, key: str) -> str:
-        return str(self.chat_id) + key
-
-    async def set_item(self, key: str, value: str):
-        storage[self._get_key(key)] = value
-
-    async def get_item(self, key: str, default_value: str = None) -> str:
-        return storage.get(self._get_key(key), default_value)
-
-    async def remove_item(self, key: str):
-        storage.pop(self._get_key(key))
+def get_storage(chat_id: int) -> FileStorage:
+    return FileStorage(file_path=f"{config.BASE_DIR}/connections/{chat_id}.json")
 
 
 def generate_payload(ttl: int) -> str:
@@ -83,7 +65,7 @@ def generate_qr(url: str) -> BufferedInputFile:
 def get_connector(chat_id: int) -> TonConnect:
     return TonConnect(
         config.MANIFEST_URL,
-        storage=TcStorage(chat_id),
+        storage=get_storage(chat_id),
         api_tokens={"tonapi": "7ca1f081609976ddb8d4935c3c5c8654"},
     )
 
@@ -124,9 +106,7 @@ async def connect_wallet(callback: CallbackQuery, wallet_name: str) -> bool | An
 
     generated_url = await connector.connect(
         wallet,
-        {
-            "ton_proof": proof_payload,
-        },
+        {"ton_proof": proof_payload},
     )
 
     mk_b = InlineKeyboardBuilder()
