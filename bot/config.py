@@ -12,4 +12,5 @@ DB_URL = os.getenv("DB_URL")
 DB_ECHO = True
 MNEMONICS = os.getenv("MNEMONICS")
 TONAPI_KEY = os.getenv("TONAPI_KEY")
+TONCONNECT_BRIDGEAPI_KEY = os.getenv("TONCONNECT_BRIDGEAPI_KEY")
 BASE_DIR = Path(__file__).resolve().parent

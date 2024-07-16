@@ -66,7 +66,7 @@ def get_connector(chat_id: int) -> TonConnect:
     return TonConnect(
         config.MANIFEST_URL,
         storage=get_storage(chat_id),
-        api_tokens={"tonapi": "7ca1f081609976ddb8d4935c3c5c8654"},
+        api_tokens={"tonapi": config.TONCONNECT_BRIDGEAPI_KEY},
     )
 
 
