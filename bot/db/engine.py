@@ -4,15 +4,15 @@ from .models import Base
 
 import config
 
-engine = create_async_engine(config.DB_URL, echo=config.DB_ECHO)
+engine = create_async_engine(
+    config.DB_URL,
+    echo=config.DB_ECHO,
+    pool_size=5,
+    max_overflow=10,
+)
 
 session_maker = async_sessionmaker(
     bind=engine,
     expire_on_commit=False,
     class_=AsyncSession,
 )
-
-
-async def create_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)

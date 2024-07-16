@@ -6,9 +6,9 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from pytonconnect import TonConnect
 from pytonconnect.storage import FileStorage
 from pytonconnect.parsers import WalletInfo
+from pytonconnect import TonConnect
 
 from pytoniq_core import Address
 
@@ -16,9 +16,9 @@ from nacl.utils import random
 
 from datetime import datetime
 
-from io import BytesIO
-
 from typing import Any
+
+from io import BytesIO
 
 import asyncio
 import qrcode
