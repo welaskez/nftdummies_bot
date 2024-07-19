@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tmc_bot_l"
+name = "base-tg-bot-template"
 version = "0.1.0"
 description = "base telegram bot template"
 authors = ["Your Name <you@example.com>"]
@@ -16,8 +16,8 @@ pytonapi = "^0.3.2"
 apscheduler = "^3.10.4"
 qrcode = "^7.4.2"
 alembic = "^1.13.2"
+aiosqlite = "^0.20.0"
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.31"}
-asyncpg = "^0.29.0"
 
 
 [tool.poetry.group.dev.dependencies]
