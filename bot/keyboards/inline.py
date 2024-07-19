@@ -4,7 +4,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 def inline_keyboard(
     buttons: list[InlineKeyboardButton],
-    adjust: int = 1,
+    adjust: tuple[int] = (1,),
 ) -> InlineKeyboardMarkup:
     keyboard = InlineKeyboardBuilder()
 
