@@ -3,8 +3,8 @@ Description=some description
 After=network.target
 
 [Service]
-User=root
-Group=www-data
+User=your user
+Group=your group
 WorkingDirectory=path/to/your/bot/dir
 Restart=on-failure
 RestartSec=2s
