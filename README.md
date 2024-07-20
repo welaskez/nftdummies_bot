@@ -22,7 +22,7 @@ mkdir bot/connections
 
 ## Deploy bot on server
 To deploy the bot to the server you need to upload the folder with the ready bot to the server, then upload the configuration file [bot.service](bot.service) for autostart and autorestart bot to the `etc/systemd/system/` folder, having previously configured it.
-then execute the commands:
+Then execute the commands:
 
 ```commandline
 sudo systemctl daemon-reload
