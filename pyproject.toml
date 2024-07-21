@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "base-tg-bot-template"
+name = "nft dummies bot"
 version = "0.1.0"
-description = "base telegram bot template"
+description = "bot for nft dummies ecosystem"
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
 readme = "README.md"
