@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "nft dummies bot"
+name = "bot"
 version = "0.1.0"
 description = "bot for nft dummies ecosystem"
 authors = ["Your Name <you@example.com>"]
