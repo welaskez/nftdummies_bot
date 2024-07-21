@@ -3,7 +3,7 @@ from aiogram.filters import Command
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from db.crud import create_user
+from db.crud.user_requests import create_user
 
 router = Router()
 
