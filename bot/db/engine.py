@@ -5,8 +5,8 @@ import config
 engine = create_async_engine(
     config.DB_URL,
     echo=config.DB_ECHO,
-    pool_size=5,
-    max_overflow=10,
+    # pool_size=5,
+    # max_overflow=10,
 )
 
 session_maker = async_sessionmaker(
