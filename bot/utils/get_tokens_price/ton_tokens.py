@@ -7,7 +7,7 @@ from pytonapi import AsyncTonapi
 
 import config
 
-tonapi = AsyncTonapi(api_key=config.TONAPI_API_KEY)
+tonapi = AsyncTonapi(api_key=config.TONAPI_KEY)
 
 
 async def get_rates(jettton_master_address: str, retry_count: int = 3):

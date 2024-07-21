@@ -1,4 +1,4 @@
-from db.crud import get_ton_tokens, update_sticker_fild_id
+from db.crud.ton_token_requests import get_ton_tokens, update_sticker_fild_id
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -11,7 +11,7 @@ import asyncio
 
 
 async def update_stickers(bot: Bot, session: AsyncSession):
-    await bot.delete_sticker_set(config.STICKER_SET_NAME)
+    # await bot.delete_sticker_set(config.STICKER_SET_NAME)
     await bot.create_new_sticker_set(
         user_id=config.ADMINS[0],
         name=config.STICKER_SET_NAME,
