@@ -1,7 +1,7 @@
 __all__ = ("routers",)
 
-from .newsletter import router as newsletter_router
+from .update_stickers import router as update_stickers_router
 
 routers = [
-    newsletter_router,
+    update_stickers_router,
 ]
