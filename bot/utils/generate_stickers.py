@@ -43,7 +43,8 @@ def generate_sticker(
     draw_sticker = ImageDraw.Draw(sticker)
 
     draw_text(draw_sticker, (30, 120), ticker, font_default, (34, 25, 27))
-    draw_text(draw_sticker, (30, 190), f"{price_ton} TON", font_small, (34, 25, 27))
+    if ticker != "TON":
+        draw_text(draw_sticker, (30, 190), f"{price_ton} TON", font_small, (34, 25, 27))
     draw_text(draw_sticker, (30, 240), f"$ {price_usd}", font_large, (34, 25, 27))
     draw_text(draw_sticker, (45, 353), "7D", font_medium, (255, 255, 255))
     draw_text(draw_sticker, (297, 353), "30D", font_medium, (255, 255, 255))
