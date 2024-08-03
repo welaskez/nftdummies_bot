@@ -1,19 +1,23 @@
-import asyncio
 from db.crud.ton_token_requests import get_ton_tokens, update_sticker_fild_id
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .generate_stickers import get_stickerpack
 
-from aiogram.exceptions import TelegramBadRequest
+from aiogram.exceptions import TelegramBadRequest, TelegramRetryAfter
 from aiogram import Bot
 
+import logging
 import config
 
 
 async def update_stickers(bot: Bot, session: AsyncSession):
     try:
-        await bot.delete_sticker_set(config.STICKER_SET_NAME)
+        try:
+            await bot.delete_sticker_set(config.STICKER_SET_NAME)
+        except TelegramBadRequest as ex:
+            logging.error(ex)
+            pass
         await bot.create_new_sticker_set(
             user_id=config.ADMINS[0],
             name=config.STICKER_SET_NAME,
@@ -30,7 +34,6 @@ async def update_stickers(bot: Bot, session: AsyncSession):
             await update_sticker_fild_id(
                 session, sticker_file_ids[idx], ton_token.ticker
             )
-    except TelegramBadRequest as ex:
-        print(ex)
-        await asyncio.sleep(90)
-        return await update_stickers(bot=bot, session=session)
+    except TelegramRetryAfter as ex:
+        logging.error(ex)
+        return
