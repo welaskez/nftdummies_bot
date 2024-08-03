@@ -6,6 +6,10 @@ from handlers import routers
 from middlewares import DatabaseMiddleware
 from filters import ChatType
 
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+
+from utils import update_stickers
+
 from db.engine import session_maker
 
 import asyncio
@@ -22,6 +26,8 @@ bot = Bot(
 )
 dp = Dispatcher()
 
+scheduler = AsyncIOScheduler()
+
 
 async def on_startup(bot: Bot):
     logging.info("Bot has started")
@@ -32,6 +38,17 @@ async def on_shutdown(bot: Bot):
 
 
 async def main():
+    async with session_maker() as session:
+        scheduler.add_job(
+            update_stickers,
+            trigger="interval",
+            minutes=30,
+            args=(
+                bot,
+                session,
+            ),
+        )
+
     dp.message.filter(ChatType(chat_types=["private"]))
     dp.include_routers(*routers)
     dp.startup.register(on_startup)
