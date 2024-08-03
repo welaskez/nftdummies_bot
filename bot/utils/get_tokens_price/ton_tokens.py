@@ -35,6 +35,10 @@ async def get_rates(jettton_master_address: str, retry_count: int = 3):
         formatted_price_usd = round(price_usd, 6)
         formatted_price_ton = round(price_ton, 7)
 
+    if jettton_master_address == "TON":
+        formatted_price_usd = round(price_usd, 2)
+        formatted_price_ton = round(price_ton, 1)
+
     return (
         formatted_price_usd,
         formatted_price_ton,
