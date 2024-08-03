@@ -8,12 +8,15 @@ from db.crud.ton_token_requests import create_ton_token, update_sticker_fild_id
 
 from states import AdminState
 
+from filters.is_admin import IsAdmin
+
 from utils.generate_stickers import generate_sticker
 from utils.get_tokens_price.ton_tokens import get_rates
 
 import config
 
 router = Router()
+router.message.filter(IsAdmin())
 
 
 @router.message(Command("add_sticker"))

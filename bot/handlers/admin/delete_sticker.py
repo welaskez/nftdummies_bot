@@ -6,9 +6,12 @@ from aiogram.filters import Command
 
 from db.crud.ton_token_requests import get_ton_token_by_ticker, delete_ton_token
 
+from filters.is_admin import IsAdmin
+
 from states import AdminState
 
 router = Router()
+router.message.filter(IsAdmin())
 
 
 @router.message(Command("delete_sticker"))
